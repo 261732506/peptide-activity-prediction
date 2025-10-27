@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://img.shields.io/badge/DOI-pending-orange.svg)](https://doi.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17454463.svg)](https://doi.org/10.5281/zenodo.17454463)
 
 An integrated computational pipeline for predicting and prioritizing dual-functional antimicrobial and cell-penetrating peptide candidates using protein language models and machine learning.
 
@@ -144,6 +144,44 @@ Independent literature-curated set:
 - **Negatives**: Poly-amino acids, epitope tags (n=10 per function)
 
 **File**: `data/validation/literature_validation.csv`
+
+### Pre-trained Models and Feature Matrix
+
+Due to file size limitations, large files are hosted on Zenodo:
+
+**Zenodo DOI**: [10.5281/zenodo.17454463](https://doi.org/10.5281/zenodo.17454463)
+
+**Files included**:
+- `improved_predictors_optimized.pkl` (31 MB): Trained Random Forest models for AMP, CPP, AOP, AHP prediction
+- `feature_matrix.npy` (159 MB): Pre-computed 2590-dimensional feature vectors for all 21,825 training sequences
+
+**Download instructions**:
+
+```bash
+# Create directories
+mkdir -p models data/processed
+
+# Download trained model (31 MB)
+wget https://zenodo.org/records/17454463/files/improved_predictors_optimized.pkl -O models/improved_predictors_optimized.pkl
+
+# Download feature matrix (159 MB)
+wget https://zenodo.org/records/17454463/files/feature_matrix.npy -O data/processed/feature_matrix.npy
+```
+
+**Alternative (using Python)**:
+```python
+import requests
+
+# Download model
+url_model = "https://zenodo.org/records/17454463/files/improved_predictors_optimized.pkl"
+with open('models/improved_predictors_optimized.pkl', 'wb') as f:
+    f.write(requests.get(url_model).content)
+
+# Download feature matrix
+url_features = "https://zenodo.org/records/17454463/files/feature_matrix.npy"
+with open('data/processed/feature_matrix.npy', 'wb') as f:
+    f.write(requests.get(url_features).content)
+```
 
 ---
 
