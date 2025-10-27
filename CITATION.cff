@@ -1,18 +1,18 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-  - family-names: "[REPLACE WITH YOUR LAST NAME]"
-    given-names: "[REPLACE WITH YOUR FIRST NAME]"
+  - family-names: "Pan"
+    given-names: "Jiang"
     orcid: "https://orcid.org/[REPLACE WITH YOUR ORCID OR REMOVE THIS LINE]"
 title: "Dual-Functional Peptide Prediction Pipeline"
 version: "1.0.0"
 date-released: "2025-01-26"
-url: "https://github.com/261732506/dual-functional-peptide-prediction"
+url: "https://github.com/261732506/peptide-activity-prediction"
 preferred-citation:
   type: article
   authors:
-    - family-names: "[Your Last Name]"
-      given-names: "[Your First Name]"
+    - family-names: "Pan"
+      given-names: "Jiang"
       orcid: "https://orcid.org/[Your ORCID]"
   title: "An integrated computational pipeline for prioritizing dual-functional antimicrobial and cell-penetrating peptide candidates"
   journal: "PLOS ONE"
@@ -21,3 +21,4 @@ preferred-citation:
   issue: X
   start: eXXXXXXX
   doi: "10.1371/journal.pone.XXXXXXX"
+
