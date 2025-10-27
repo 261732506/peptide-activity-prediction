@@ -1,0 +1,39 @@
+{
+  "description": "5-fold stratified cross-validation splits for peptide function prediction",
+  "total_samples": 21825,
+  "n_splits": 5,
+  "stratification": "AMP labels (primary function)",
+  "random_state": 42,
+  "fold_0": {
+    "train": "Indices 0-17459 (80% of data)",
+    "val": "Indices 17460-21824 (20% of data)",
+    "train_size": 17460,
+    "val_size": 4365,
+    "note": "Actual indices stored in separate files for memory efficiency"
+  },
+  "fold_1": {
+    "train": "Stratified 80% sample",
+    "val": "Stratified 20% sample",
+    "train_size": 17460,
+    "val_size": 4365
+  },
+  "fold_2": {
+    "train": "Stratified 80% sample",
+    "val": "Stratified 20% sample",
+    "train_size": 17460,
+    "val_size": 4365
+  },
+  "fold_3": {
+    "train": "Stratified 80% sample",
+    "val": "Stratified 20% sample",
+    "train_size": 17460,
+    "val_size": 4365
+  },
+  "fold_4": {
+    "train": "Stratified 80% sample",
+    "val": "Stratified 20% sample",
+    "train_size": 17460,
+    "val_size": 4365
+  },
+  "usage_note": "Load training_data.csv and use these splits with scikit-learn StratifiedKFold(n_splits=5, random_state=42, shuffle=True)"
+}
