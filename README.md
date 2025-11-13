@@ -242,10 +242,12 @@ embeddings = extract_esm2_features(
 
 ### Design Strategy Comparison
 
-| Strategy | Candidates | Max Joint Prob | Improvement |
-|----------|-----------|----------------|-------------|
-| Point Mutation | 304 | 0.308 | Baseline |
-| Modular Assembly | 193 | 0.364 | **+18.3%** |
+| Strategy | Candidates | Max Joint Prob | Best Sequence | Improvement |
+|----------|-----------|----------------|---------------|-------------|
+| Point Mutation (≥16aa) | 79 | 0.306 | RKIKIWFKNRRMKWKK | Baseline |
+| Modular Assembly | 393 | 0.367 | YGRKKRRQRRRGGGGSKLAKKLA | **+19.9%** |
+
+**Note**: Point mutation candidates were filtered to retain sequences ≥16 amino acids to ensure fair comparison and avoid systematic bias of ESM-2 model towards ultra-short peptides. See `results/ESM2_length_bias_analysis.pdf` for detailed analysis.
 
 ---
 
@@ -253,20 +255,20 @@ embeddings = extract_esm2_features(
 
 ### Top Dual-Functional Candidate
 
-**Sequence**: `RRRRRRRRRGGGGSKRWWKWIRW`
+**Sequence**: `YGRKKRRQRRRGGGGSKLAKKLA`
 
-**Structure**: R9 (CPP module) + GGGGS (linker) + KRWWKWIRW (AMP motif)
+**Structure**: TAT (CPP module) + GGGGS (linker) + KLAKKLA (AMP motif)
 
 **Predictions**:
-- CPP probability: 0.639
-- AMP probability: 0.570
-- Joint probability: 0.364
+- CPP probability: 0.877
+- AMP probability: 0.419
+- Joint probability: 0.367
 
 **Properties**:
 - Length: 23 amino acids
-- Net charge: +10 (pH 7.4)
-- Hydrophobic content: 17.4%
-- Aromatic content: 13.0%
+- Net charge: +7 (pH 7.4)
+- Hydrophobic content: 30.4%
+- Aromatic content: 8.7%
 
 ---
 
@@ -283,24 +285,31 @@ peptide-activity-prediction/
 │   └── improved_predictors_optimized.pkl  # Trained Random Forest models
 ├── features/
 │   └── extracted_features.npy  # Pre-computed 2590d feature matrix
+├── results/
+│   ├── point_mutation_candidates_ESM2_RF_REAL.csv          # AutoDL real predictions (304 sequences)
+│   ├── point_mutation_candidates_ESM2_RF_filtered_16aa.csv # Length-filtered (79 sequences)
+│   ├── point_mutation_top10_filtered_16aa.csv              # Top 10 filtered candidates
+│   ├── ESM2_length_bias_analysis.png                       # Supplementary Figure S1 (PNG)
+│   └── ESM2_length_bias_analysis.pdf                       # Supplementary Figure S1 (PDF)
 ├── scripts/
-│   ├── peptide_editing_system.py  # Main prediction system
-│   ├── extract_esm2_features.py   # ESM-2 feature extraction
-│   ├── train_models.py            # Model training
-│   ├── cross_validation.py        # Cross-validation
-│   ├── literature_validation.py   # Literature validation
-│   ├── comparison_with_tools.py   # Benchmark comparison
-│   └── ablation_study.py          # Feature ablation
+│   ├── peptide_editing_system.py     # Main prediction system
+│   ├── extract_esm2_features.py      # ESM-2 feature extraction
+│   ├── train_models.py               # Model training
+│   ├── cross_validation.py           # Cross-validation
+│   ├── literature_validation.py      # Literature validation
+│   ├── comparison_with_tools.py      # Benchmark comparison
+│   ├── ablation_study.py             # Feature ablation
+│   ├── filter_by_length_fixed.py     # Length filtering for point mutations
+│   └── generate_supplementary_figure.py  # Generate ESM-2 bias analysis figure
 ├── design/
 │   ├── modular_assembly.py     # Modular design strategy
 │   └── point_mutation.py       # Point mutation editing
-├── results/
-│   ├── figures/                # All publication figures (300 DPI)
-│   └── tables/                 # All publication tables
 ├── docs/
-│   ├── README.md              # This file
-│   ├── USAGE.md               # Detailed usage guide
-│   └── API.md                 # API documentation
+│   ├── README.md                     # This file
+│   ├── DATA_UPDATE_SUMMARY.md        # Data update rationale and analysis
+│   ├── ESM2_RF_PREDICTION_REPORT.md  # AutoDL prediction detailed report
+│   ├── USAGE.md                      # Detailed usage guide
+│   └── API.md                        # API documentation
 ├── requirements.txt           # Python dependencies
 ├── environment.yml            # Conda environment
 ├── LICENSE                    # MIT License
